@@ -53,6 +53,26 @@ tOP is time before opcode is stable. That includes PC latch propagation and ROM 
   "config": { "hscale": 1 }
 }
 </script>
+ <script type="WaveDrom">
+ 
+ { 
+  "signal" : [
+    { "name": "PHASE", "wave": "==...==..==", "data": "- 1 - 2 - 1" },
+    { "name": "ROMdat","wave": "=x=.......x", "data": ["", "LOAD B, [H:L]", ""] },
+    { "name": "ABUS",  "wave": "x..=......x", "data": ["H:L"] },
+    { "name": "DBUS",  "wave": "x...=.....x", "data": ["DATA"] },
+    { "name": "RAM OE","wave": "0..1......0", "data": [] },
+    { "name": "REGB W","wave": "0.....1..0.", "data": [] },
+  
+  ],
+  "edge": [
+    
+  ],
+  //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
+  "head": { text: "RAM read cycle" },
+  "config": { "hscale": 1 }
+}
+ </script>
  
 </body>
 </html>
