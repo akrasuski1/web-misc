@@ -119,17 +119,20 @@
  This is a very complex instruction and I'm still not sure that I got it right. There have to be
  two flags to remember state while it's executing.
  <br/>
- Actually, the schematic above is <b> wrong </b>. The problem arises when we try to 
- set HL to PC+1 at the same time when setting NX to HL. HL is read and written at the same time.
- <br/>
- 
  FLAGLPM1 is set on phase 2 if (FLAGLPM2 == 0 && opcode == LPM). Otherwise it is reset on phase 2.
  <br/>
  FLAGLPM2 is set to the value of FLAGLPM1 on phase 1. This makes it lag one phase behind.
  <br/>
-Initially I wanted this instruction to also increment HL pair, since it will already require
+ Initially I wanted this instruction to also increment HL pair, since it will already require
  access to incrementer, but HL is needed to remember old PC. This also means this
  instruction trashes HL.
+ <br/>
+ Actually, the schematic above is <b> wrong </b>. The problem arises when we try to 
+ set HL to PC+1 at the same time when setting NX to HL. HL is read and written at the same time.
+ Seems like the only reasonable way to implement LPM is to add multiplexer before ROM,
+ which I tried to avoid.
+ <br/>
+ 
  
  
  
