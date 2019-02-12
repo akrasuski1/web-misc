@@ -12,17 +12,17 @@
 <script type="WaveDrom">
 { 
   "signal" : [
-    { "name": "PHASE", "wave": "==..==..==..", "node": ".a", "data": "- 1 - 2 - 1" },
+    { "name": "PHASE", "wave": "==..==..==..", "node": ".A", "data": "- 1 - 2 - 1" },
     { "name": "PCw",   "wave": "01..0....1..", "data": "" },
     { "name": "PC",    "wave": "=x=......x=.", "data": "11 12 13" },
-    { "name": "ROMdat","wave": "=x.=.....x.=", "node": "...b", "data": " ROM[12]" },
+    { "name": "ROMdat","wave": "=x.=.....x.=", "node": "...B", "data": " ROM[12]" },
     { "name": "PC+1",  "wave": "=x.=.....x.=", "data": "12 13 14" },
     { "name": "NXw",   "wave": "0....1..0...", "data": "" },
     { "name": "NX",    "wave": "=....x=.....", "data": "12 13" },
   
   ],
   "edge": [
-    "a~b tOP"
+  //  "A~B tOP"
   ],
   //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
   "head": { text: "Typical PC and opcode timing" },
@@ -30,9 +30,6 @@
 }
 
 </script>
-
-tOP is time before opcode is stable. That includes PC latch propagation and ROM delay. Unmarked
- is incrementer delay, which must be short enough to allow NX to latch before phase 2 ends.
 
  <script type="WaveDrom">
 
