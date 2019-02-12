@@ -1,0 +1,37 @@
+<html>
+<header>
+ <script src="default.js"></script>
+ <script src="WaveDrom.js"></script>
+</header>
+<body onload="WaveDrom.ProcessAll()">
+
+<h2>WaveDrom Example</h2>
+
+WaveDrom timing diagrams can be embedded into the web pages, blogs, wiki pages:
+<p/>
+<script type="WaveDrom">
+{ 
+  "signal" : [
+    { "name": "PHASE", "wave": "==..==..==..", "node": ".a", "data": "- 1 - 2 - 1" },
+    { "name": "PCw",   "wave": "01..0....1..", "data": "" },
+    { "name": "PC",    "wave": "=x=......x=.", "data": "11 12 13" },
+    { "name": "ROMdat","wave": "=x.=.....x.=", "node": "...b", "data": " ROM[12]" },
+    { "name": "PC+1",  "wave": "=x.=.....x.=", "data": "12 13 14" },
+    { "name": "NXw",   "wave": "0....1..0...", "data": "" },
+    { "name": "NX",    "wave": "=....x=.....", "data": "12 13" },
+  
+  ],
+  "edge": [
+    "a~b tOP"
+  ],
+  //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
+  "head": { text: "Typical PC and opcode timing" },
+  "config": { "hscale": 1 }
+}
+
+</script>
+<p/>
+Yes, right in the middle of your page.
+
+</body>
+</html>
