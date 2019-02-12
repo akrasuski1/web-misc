@@ -5,10 +5,10 @@
 </header>
 <body onload="WaveDrom.ProcessAll()">
 
-<h2>WaveDrom Example</h2>
+<h2>HALB timings</h2>
 
-WaveDrom timing diagrams can be embedded into the web pages, blogs, wiki pages:
-<p/>
+
+
 <script type="WaveDrom">
 { 
   "signal" : [
@@ -30,8 +30,9 @@ WaveDrom timing diagrams can be embedded into the web pages, blogs, wiki pages:
 }
 
 </script>
-<p/>
-Yes, right in the middle of your page.
+
+tOP is time before opcode is stable. That includes PC latch propagation and ROM delay. Unmarked
+ is incrementer delay, which must be short enough to allow NX to latch before phase 2 ends.
 
 </body>
 </html>
