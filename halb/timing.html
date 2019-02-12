@@ -34,5 +34,25 @@
 tOP is time before opcode is stable. That includes PC latch propagation and ROM delay. Unmarked
  is incrementer delay, which must be short enough to allow NX to latch before phase 2 ends.
 
+ <script type="WaveDrom">
+
+ { 
+  "signal" : [
+    { "name": "PHASE", "wave": "==..==..==", "data": "- 1 - 2 - 1" },
+    { "name": "ROMdat","wave": "=x=......x", "data": ["", "STORE [H:L], B", ""] },
+    { "name": "ABUS",  "wave": "x..=.....x", "data": ["H:L"] },
+    { "name": "DBUS",  "wave": "x..=.....x", "data": ["B"] },
+    { "name": "RAM WE","wave": "0....1..0.", "data": [] },
+  
+  ],
+  "edge": [
+    
+  ],
+  //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
+  "head": { text: "RAM write cycle" },
+  "config": { "hscale": 1 }
+}
+</script>
+ 
 </body>
 </html>
