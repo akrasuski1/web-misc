@@ -92,7 +92,33 @@
   "config": { "hscale": 1 }
 }
  </script>
+ <script type="WaveDrom">
 
+ { 
+  "signal" : [
+    { "name": "PHASE",   "wave": "==..==.==..==.==.", "data": "- 1 - 2 - 1 - 2 - 1" },
+    { "name": "ROMdat",  "wave": "=x=.....x=.....x.", "data": ["", "LDI1, 9", "LDI0, 5"] },
+    { "name": "T",       "wave": "x..=....=........", "data": ["[1xx1]9", "[1xx0]9"] },
+    { "name": "B",       "wave": "x............=...", "data": ["95"] },
+    { "name": "FLAGLDI", "wave": "0....1......0....", "data": ["12", "95", "95"] },
+  
+  ],
+  "edge": [
+    
+  ],
+  //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
+  "head": { text: "Loading immediate" },
+  "config": { "hscale": 1 }
+}
+ </script>
+
+ Confusing instruction. As far as I can tell, these rules should work (given instruction is detected as LDI):
+ <br/>
+ Set FLAGLDI to T4 on phase 2.
+ <br/>
+ Set T4 to FLAGLDI on phase 1.
+ <br/>
+ Set register write on phase 2 if T4 is 0.
  
  <script type="WaveDrom">
  
