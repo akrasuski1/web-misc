@@ -112,12 +112,15 @@
     
   ],
   //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
-  "head": { text: "Loading program memory" },
+  "head": { text: "INVALID - Loading program memory - INVALID" },
   "config": { "hscale": 1 }
 }
  </script>
  This is a very complex instruction and I'm still not sure that I got it right. There have to be
  two flags to remember state while it's executing.
+ <br/>
+ Actually, the schematic above is <b> wrong </b>. The problem arises when we try to 
+ set HL to PC+1 at the same time when setting NX to HL. HL is read and written at the same time.
  <br/>
  
  FLAGLPM1 is set on phase 2 if (FLAGLPM2 == 0 && opcode == LPM). Otherwise it is reset on phase 2.
@@ -127,6 +130,7 @@
 Initially I wanted this instruction to also increment HL pair, since it will already require
  access to incrementer, but HL is needed to remember old PC. This also means this
  instruction trashes HL.
+ 
  
  
 </body>
