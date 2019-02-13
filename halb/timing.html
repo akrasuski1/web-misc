@@ -100,7 +100,9 @@
     { "name": "ROMdat",  "wave": "=x=.....x=.....x.", "data": ["", "LDI1, 9", "LDI0, 5"] },
     { "name": "T",       "wave": "x..=....=........", "data": ["[1xx1]9", "[1xx0]9"] },
     { "name": "B",       "wave": "x............=...", "data": ["95"] },
-    { "name": "FLAGLDI", "wave": "0....1......0....", "data": ["12", "95", "95"] },
+    { "name": "FLAGMUL", "wave": "0....1......0....", "data": ["12", "95", "95"] },
+    { "name": "NV",      "wave": "x..0............x.", "data": [] },
+    { "name": "V",       "wave": "x.....0.........x.", "data": [] },
   
   ],
   "edge": [
@@ -112,11 +114,13 @@
 }
  </script>
 
- Confusing instruction. As far as I can tell, these rules should work (given instruction is detected as LDI):
+ Confusing instruction. FLAGMUL is used to remember that this is multiycle instruction,
+ while V distinguishes it from LPM. As far as I can tell, these rules should work 
+ (given instruction is detected as LDI):
  <br/>
- Set FLAGLDI to T4 on phase 2.
+ Set FLAGMUL to T4 on phase 2.
  <br/>
- Set T4 to FLAGLDI on phase 1.
+ Set T4 to FLAGMUL on phase 1.
  <br/>
  Set register write on phase 2 if T4 is 0.
  
@@ -159,8 +163,37 @@
  which I tried to avoid.
  <br/>
  
+ <script type="WaveDrom">
  
- 
+ { 
+  "signal" : [
+    { "name": "PHASE",   "wave": "==...==..==...==..==.", "data": "- 1 - 2 - 1 - 2 - 1" },
+    { "name": "ROMdat",  "wave": "=x.=......x.=......x.", "data": ["", "LPM A, [H:L]", "ROM[5678]"] },
+    { "name": "BA",      "wave": "x...=..=.......x=....", "data": ["xx36", "1236", "12RR"] },
+    { "name": "HL",      "wave": "=.........x=...x=....", "data": ["5678", "5636", "1236"] },
+    { "name": "PC",      "wave": "=x=.......x=.......x=", "data": ["1234", "1235", "5678", "1236"] },
+    { "name": "NX",      "wave": "=.....x=.......x.=...", "data": ["1235", "5678", "1236"] },
+    { "name": "FLAGMUL", "wave": "0......x1........0...", "data": [] },
+    { "name": "NZ",      "wave": "x...1......0.......x.", "data": [] },
+    { "name": "Z",       "wave": "x......1........0..x.", "data": [] },
+    { "name": "NV",      "wave": "x...1..............x.", "data": [] },
+    { "name": "V",       "wave": "x......1...........x.", "data": [] },
+  
+  ],
+  "edge": [
+    
+  ],
+  //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
+  "head": { text: "Loading program memory" },
+  "config": { "hscale": 1 }
+}
+}
+ </script>
+ Here's the corrected version of LPM. Unfortunately it requires all four main
+ registers as temporary storage. In phase 1, A is set to lo(PC+1). Phase 2:
+ B = hi(PC+1), NX = HL. Phase 1 of the next cycle, other than usual PC assignment,
+ we have L = A. Finally, phase 2: NX = BL and A = ROM[PC]. FLAGMUL is used to
+ remember that this is multicycle instruction, and Z/V flags also manage state.
  
 </body>
 </html>
