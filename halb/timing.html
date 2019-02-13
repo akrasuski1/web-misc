@@ -167,17 +167,17 @@
  
  { 
   "signal" : [
-    { "name": "PHASE",   "wave": "==...==..==...==..==.", "data": "- 1 - 2 - 1 - 2 - 1" },
-    { "name": "ROMdat",  "wave": "=x.=......x.=......x.", "data": ["", "LPM A, [H:L]", "ROM[5678]"] },
-    { "name": "BA",      "wave": "x...=..=.......x=....", "data": ["xx36", "1236", "12RR"] },
-    { "name": "HL",      "wave": "=.........x=.........", "data": ["5678", "5636"] },
-    { "name": "PC",      "wave": "=x=.......x=.......x=", "data": ["1234", "1235", "5678", "1236"] },
-    { "name": "NX",      "wave": "=.....x=.......x.=...", "data": ["1235", "5678", "1236"] },
-    { "name": "FLAGLPM", "wave": "0......x1........0...", "data": [] },
-    { "name": "NZ",      "wave": "x...1......0.......x.", "data": [] },
-    { "name": "Z",       "wave": "x......1........0..x.", "data": [] },
-    { "name": "NV",      "wave": "x...1..............x.", "data": [] },
-    { "name": "V",       "wave": "x......1...........x.", "data": [] },
+    { "name": "PHASE",   "wave": "==...==.==...==..==.", "data": "- 1 - 2 - 1 - 2 - 1" },
+    { "name": "ROMdat",  "wave": "=x.=.....x.=......x.", "data": ["", "LPM A, [H:L]", "ROM[5678]"] },
+    { "name": "BT",      "wave": "x...=..=..........x.", "data": ["xx36", "1236"] },
+    { "name": "A",       "wave": "x..............=....", "data": ["xx36", "1236"] },
+    { "name": "HL",      "wave": "=........x=.........", "data": ["5678", "5636"] },
+    { "name": "PC",      "wave": "=x=......x=.......x=", "data": ["1234", "1235", "5678", "1236"] },
+    { "name": "NX",      "wave": "=.....x=......x.=...", "data": ["1235", "5678", "1236"] },
+    { "name": "FLAGMUL1","wave": "0......1........0...", "data": [] },
+    { "name": "FLAGMUL2","wave": "0.........1........0", "data": [] },
+    { "name": "NZ",      "wave": "x...1.............x.", "data": [] },
+    { "name": "Z",       "wave": "x......1..........x.", "data": [] },
   
   ],
   "edge": [
@@ -191,8 +191,8 @@
  Here's the corrected version of LPM. Unfortunately it requires all four main
  registers as temporary storage. In phase 1, A is set to lo(PC+1). Phase 2:
  B = hi(PC+1), NX = HL. Phase 1 of the next cycle, other than usual PC assignment,
- we have L = A. Finally, phase 2: NX = BL and A = ROM[PC]. FLAGMUL is used to
- remember that this is multicycle instruction, and Z/V flags also manage state.
+ we have L = A. Finally, phase 2: NX = BL and A = ROM[PC]. FLAGMUL1/2 is used to
+ remember that this is multicycle instruction, and Z flag specifies it is LPM.
  
 </body>
 </html>
