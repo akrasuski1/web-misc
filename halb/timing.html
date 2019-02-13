@@ -170,10 +170,10 @@
     { "name": "PHASE",   "wave": "==...==..==...==..==.", "data": "- 1 - 2 - 1 - 2 - 1" },
     { "name": "ROMdat",  "wave": "=x.=......x.=......x.", "data": ["", "LPM A, [H:L]", "ROM[5678]"] },
     { "name": "BA",      "wave": "x...=..=.......x=....", "data": ["xx36", "1236", "12RR"] },
-    { "name": "HL",      "wave": "=.........x=...x=....", "data": ["5678", "5636", "1236"] },
+    { "name": "HL",      "wave": "=.........x=.........", "data": ["5678", "5636"] },
     { "name": "PC",      "wave": "=x=.......x=.......x=", "data": ["1234", "1235", "5678", "1236"] },
     { "name": "NX",      "wave": "=.....x=.......x.=...", "data": ["1235", "5678", "1236"] },
-    { "name": "FLAGMUL", "wave": "0......x1........0...", "data": [] },
+    { "name": "FLAGLPM", "wave": "0......x1........0...", "data": [] },
     { "name": "NZ",      "wave": "x...1......0.......x.", "data": [] },
     { "name": "Z",       "wave": "x......1........0..x.", "data": [] },
     { "name": "NV",      "wave": "x...1..............x.", "data": [] },
@@ -186,7 +186,6 @@
   //"head": { text: "[0012]: XOR A, H ; A = 2, H = 4" },
   "head": { text: "Loading program memory" },
   "config": { "hscale": 1 }
-}
 }
  </script>
  Here's the corrected version of LPM. Unfortunately it requires all four main
